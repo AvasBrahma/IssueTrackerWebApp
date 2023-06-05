@@ -10,3 +10,7 @@ app.listen(port, function(err){
 
                console.log(`Server Running on Port: ${port}`);
             })
+
+
+
+app.use('/', require('./routes'));
