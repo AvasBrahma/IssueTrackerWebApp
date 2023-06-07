@@ -31,3 +31,20 @@ module.exports.addProject=async(req, res)=>{
     
 }
 
+//View Project 
+
+module.exports.viewProject=async (req, res)=> {
+
+   try {
+      const projects= await Project.findOne({_id: req.params.id});
+
+      res.render('projects/view', {
+         projects
+      });
+      
+   } catch (error) {
+        console.log('Error', error);
+   }
+
+}
+
