@@ -3,12 +3,19 @@ const app=express();
 const port=8000;
 const db=require('./config/mongoose');
 const expressLayouts=require('express-ejs-layouts');
-
-const { flash }=require('express-flash');
+const flash = require('connect-flash');
 const session=require('express-session');
 
-app.use(expressLayouts);
 
+app.listen(port, function(err){
+   if(err){
+    console.log(`Error in running the server: ${err}`)
+   }
+
+   console.log(`Server Running on Port: ${port}`);
+})
+
+app.use(express.urlencoded());
 
 
 app.use(express.static('./assets'));
@@ -18,7 +25,7 @@ app.use(express.static('./assets'));
 app.use(
    session({
       secret: 'secret',
-      resave:false,
+      resave: false,
       saveUninitialized:true,
       cookie:{
          maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
@@ -26,7 +33,10 @@ app.use(
    })
 );
 
-app.use(express.urlencoded());
+app.use(flash({sessionKeyName: 'flashMessage'}));
+
+app.use(expressLayouts);
+
 
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
@@ -39,13 +49,7 @@ app.set('layout', './layouts/main');
 
 
 
-app.listen(port, function(err){
-               if(err){
-                console.log(`Error in running the server: ${err}`)
-               }
 
-               console.log(`Server Running on Port: ${port}`);
-            })
 
 
 

@@ -1,7 +1,8 @@
-const Project=require('../model/projectsModel')
+const Project=require('../model/projectsModel');
 const mongoose=require('mongoose');
 
 module.exports.createProject= async (req, res)=>{
+   
     res.render('projects/createProject');
 }
 
@@ -18,6 +19,7 @@ module.exports.addProject=async(req, res)=>{
 
      try {
         await Project.create(newProject);
+        await req.flash('info', 'New Project Added');
         res.redirect('/');
 
         
