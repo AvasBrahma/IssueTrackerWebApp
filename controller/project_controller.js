@@ -48,3 +48,17 @@ module.exports.viewProject=async (req, res)=> {
 
 }
 
+module.exports.editProject= async(req, res)=>{
+
+   try {
+      const projects= await Project.findOne({_id: req.params.id});
+
+      res.render('projects/edit', {
+         projects
+      });
+      
+   } catch (error) {
+        console.log('Error', error);
+   }
+
+}
