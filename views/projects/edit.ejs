@@ -55,9 +55,30 @@
   
     <div class="form-group mb-4">
       <button type="submit" class="btn btn-primary">Update Project</button>
-      <button type="submit" class="btn btn-primary">Delete Project</button>
+
+      <button type="button" class="btn btn-danger"data-bs-toggle="modal" id="deletebtn" data-bs-target="#deleteModal">Delete Project</button>
     </div>
   
     
   
   </form>
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="deleteModal">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+           <div class="model-header">
+              <div class="modal-body">
+                <p>
+                  Are you sure? you want to delete <b class="fw-bold"><%= projects.projectname %><br/> Project?
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form action="projects/edit/<%= projects._id %>?_method=DELETE" method="POST" class="position-relative">
+                  <button type="submit" class="btn btn-primary">Yes, Delete Project</button>
+                </form>
+              </div>
+       </div>
+
+    </div>
+  </div>
