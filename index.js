@@ -1,5 +1,6 @@
 const express=require('express');
 const app=express();
+const methodOverride=require('method-override');
 const port=8000;
 const db=require('./config/mongoose');
 const expressLayouts=require('express-ejs-layouts');
@@ -16,8 +17,7 @@ app.listen(port, function(err){
 })
 
 app.use(express.urlencoded());
-
-
+app.use(methodOverride('_method'));
 app.use(express.static('./assets'));
 
 

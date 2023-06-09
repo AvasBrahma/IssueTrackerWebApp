@@ -18,7 +18,7 @@
         </nav>
       </div>
       <div class="col text-end fw-lighter">
-        <b>ProjectId: <%= projects._id %> </b><br>
+        <b>Project Id: <%= projects._id %> </b><br>
         <b>Last Updated: <%= new Date(projects.updatedAt).toUTCString() %> </b>
       </div>
     </div>
@@ -26,35 +26,36 @@
   </div>
   
   
-  <form action="/projects/add" method="POST">
+  <form action="/projects/edit/<%= projects._id %>?_method=PUT" method="POST">
   
     <div class="row form-group mb-4">
       <div class="col">
         <label for="projectname">Project Name</label>
-        <input type="text" class="form-control" id="projectname" name="projectname" value="" placeholder="Project Name" required>
+        <input type="text" class="form-control" id="projectname" name="projectname" value="<%= projects.projectname %>" placeholder="Project Name" required>
       </div>
   
     </div>
     <div class="row form-group mb-4">
       <div class="col">
         <label for="tel">Telephone</label>
-        <input type="text" class="form-control" id="tel" name="tel" value="" placeholder="Telephone" required>
+        <input type="text" class="form-control" id="tel" name="tel" value="<%= projects.tel %>" placeholder="Telephone" required>
       </div>
   
       <div class="col">
         <label for="email">Email</label>
-        <input type="text" class="form-control" id="email" name="email" value="" placeholder="Email" required>
+        <input type="text" class="form-control" id="email" name="email" value="<%= projects.email %>" placeholder="Email" required>
       </div>
     </div>
   
   
     <div class="form-group mb-4">
         <label for="details">Project Details</label>
-        <textarea class="form-control" name="details" id="details" cols="30" rows="12" placeholder="Project Details"></textarea>
+        <textarea class="form-control" name="details" id="details" cols="30" rows="12"  placeholder="Project Details"><%= projects.details %></textarea>
     </div>
   
     <div class="form-group mb-4">
-      <button type="submit" class="btn btn-primary">Add Project</button>
+      <button type="submit" class="btn btn-primary">Update Project</button>
+      <button type="submit" class="btn btn-primary">Delete Project</button>
     </div>
   
     

@@ -48,6 +48,8 @@ module.exports.viewProject=async (req, res)=> {
 
 }
 
+
+
 module.exports.editProject= async(req, res)=>{
 
    try {
@@ -61,4 +63,24 @@ module.exports.editProject= async(req, res)=>{
         console.log('Error', error);
    }
 
+}
+
+
+module.exports.editUpdateProject= async(req, res)=>{
+
+   try {
+
+      await Project.findByIdAndUpdate(req.params.id, {
+         projectname: req.body.projectname,
+         tel: req.body.tel,
+         email: req.body.email,
+         details: req.body.details,
+         updatedAt: Date.now()
+      });
+
+      await res.redirect('/');
+      
+   } catch (error) {
+       console.log('error', error);
+   }
 }
