@@ -84,3 +84,18 @@ module.exports.editUpdateProject= async(req, res)=>{
        console.log('error', error);
    }
 }
+
+
+module.exports.deleteProject= async(req, res)=>{
+
+   try {
+      await Project.deleteOne({
+         _id: req.params.id
+      })
+      res.redirect('/');
+      
+   } catch (error) {
+      console.log('error', error);
+   }
+
+}

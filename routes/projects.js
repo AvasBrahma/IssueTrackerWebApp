@@ -8,4 +8,6 @@ router.post('/add', projectController.addProject);
 router.get('/view/:id', projectController.viewProject);
 router.get('/edit/:id', projectController.editProject);
 router.put('/edit/:id', projectController.editUpdateProject);
+
+router.delete('/edit/:id', projectController.deleteProject);
 module.exports=router;
