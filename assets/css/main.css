@@ -95,3 +95,24 @@ body {
     border-color: transparent;
     box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
   }
+
+  div.menu {
+    padding-left: 70px;
+    background: white;
+}
+
+div.menu>span {
+    color: #c1c2cc;
+    font-size: 12px;
+    padding: 10px 30px;
+    /* padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px; */
+}
+
+div.menu>span.active {
+    color: #3598fe;
+    border-bottom: 2px solid #3598fe;
+    font-weight: bold;
+}

@@ -99,3 +99,15 @@ module.exports.deleteProject= async(req, res)=>{
    }
 
 }
+
+module.exports.viewProjectIssue=async(req, res)=>{
+   try {
+      //const projects= await Project.findOne({_id: req.params.id});
+
+      res.render('projects/viewIssue');
+      
+   } catch (error) {
+        console.log('Error', error);
+   }
+
+}

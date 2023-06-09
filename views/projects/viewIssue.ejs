@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Issue</h1>
+    <div class="btn-toolbar mb-2 mb-md 0">
+      <div class="btn-group me-2">
+        <a href="/projects/create" class="btn btn-sm btn-outline-secondary">+ Create New Issue</a>
+      </div>
+    </div>
+  </div>
+
+
+<div class="container issue-container">
+    <h1>Issue Table</h1>
+
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark table-dark">
+            <tr>
+              <th scope="col">Issue Id</th>
+              <th scope="col">Title</th>
+              <th scope="col">Description</th>
+              <th scope="col">Label</th>
+              <th scope="col">Author</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+                <td>12345</td>
+                <td>Bug</td>
+               <td>Bug in UI</td>
+
+                  <td>
+                     <div class="dropdown">
+                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Labels
+                   </button>
+                  <div class="dropdown-menu">
+                <!--${issue.labels.map(label => ` 8 --> <a class="dropdown-item" href="#">Medium</a><!--.`).join('')}ˇˇ-->
+                  </div>
+            </div>
+          </td>
+         <td>Avas</td>
+         <td class="text-end">
+  
+            <div class="d-flex flex-row justify-content-end gap-2">
+
+              <a href="/projects/view/ type="button" class="btn btn-primary btn-small">
+                <i class="fa-solid fa-eye"></i>
+              </a>
+
+              <a href="/projects/edit/" type="button" class="btn btn-warning btn-small">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </a>
+
+              <form action="/projects/edit/?_method=DELETE" method="POST" class="position-relative">
+                <button type="submit" class="btn btn-danger btn-small">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </form>
+
+            </div>
+
+
+          </td>
+        </tr>
+      </thead>
+              </tbody>
+    </table>
+</div>

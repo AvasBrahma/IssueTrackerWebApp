@@ -10,4 +10,6 @@ router.get('/edit/:id', projectController.editProject);
 router.put('/edit/:id', projectController.editUpdateProject);
 
 router.delete('/edit/:id', projectController.deleteProject);
+
+router.get('/issue', projectController.viewProjectIssue);
 module.exports=router;
