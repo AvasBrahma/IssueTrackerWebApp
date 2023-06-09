@@ -1,66 +1,113 @@
 <div class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Issue</h1>
-    <div class="btn-toolbar mb-2 mb-md 0">
-      <div class="btn-group me-2">
-        <a href="/projects/create" class="btn btn-sm btn-outline-secondary">+ Create New Issue</a>
-      </div>
+  <h1 class="h2">Issue</h1>
+  <div class="btn-toolbar mb-2 mb-md 0">
+    <div class="btn-group me-2">
+      <a href="/projects/creatIssuePage" class="btn btn-sm btn-outline-secondary">+ Create New Issue</a>
+    </div>
+  </div>
+</div>
+
+<div class="col py-3">
+
+  <div class="row">
+    <div class="col">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">ACH API</a></li>
+          <li class="breadcrumb-item active"><%= issue._id %></li>
+        </ol>
+      </nav>
     </div>
   </div>
 
+</div>
+<% if (message) { %> 
+  <div class="alert alert-info alert-dismissible fade show" role="alert"><%= message %> 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<% } %> 
 
 <div class="container issue-container">
-    <h1>Issue Table</h1>
-
-    <table class="table table-bordered table-hover">
-        <thead class="thead-dark table-dark">
-            <tr>
-              <th scope="col">Issue Id</th>
-              <th scope="col">Title</th>
-              <th scope="col">Description</th>
-              <th scope="col">Label</th>
-              <th scope="col">Author</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-                <td>12345</td>
-                <td>Bug</td>
-               <td>Bug in UI</td>
-
-                  <td>
-                     <div class="dropdown">
-                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Labels
-                   </button>
-                  <div class="dropdown-menu">
-                <!--${issue.labels.map(label => ` 8 --> <a class="dropdown-item" href="#">Medium</a><!--.`).join('')}ˇˇ-->
-                  </div>
-            </div>
-          </td>
-         <td>Avas</td>
-         <td class="text-end">
-  
-            <div class="d-flex flex-row justify-content-end gap-2">
-
-              <a href="/projects/view/ type="button" class="btn btn-primary btn-small">
-                <i class="fa-solid fa-eye"></i>
-              </a>
-
-              <a href="/projects/edit/" type="button" class="btn btn-warning btn-small">
-                <i class="fa-solid fa-pen-to-square"></i>
-              </a>
-
-              <form action="/projects/edit/?_method=DELETE" method="POST" class="position-relative">
-                <button type="submit" class="btn btn-danger btn-small">
-                  <i class="fa-solid fa-trash"></i>
-                </button>
-              </form>
-
-            </div>
-
-
-          </td>
-        </tr>
-      </thead>
-              </tbody>
-    </table>
+  <h1>Issue Table</h1>
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark table-dark">
+      <tr>
+        <th scope="col">Issue Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Label</th>
+        <th scope="col">Author</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% issue.forEach(element => { %>
+        <tr>
+      <td><%= element._id %></td>
+      <td><%= element.title %></td>
+      <td><%= element.description %></td>
+      <td>
+        <div class="mb-1">
+          <select disabled id="disabledSelect" class="form-select">
+            <option><%= element.label %></option>
+          </select>
+        </div>
+      </td>
+      <td><%= element.author %></td>
+      <td class="text-end">
+        <div class="d-flex flex-row justify-content-end gap-2">
+          <a href="/projects/view/ type=" button" class="btn btn-primary btn-small">
+            <i class="fa-solid fa-eye"></i>
+          </a>
+          <a href="/projects/edit/" type="button" class="btn btn-warning btn-small">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </a>
+          <form action="/projects/edit/?_method=DELETE" method="POST" class="position-relative">
+            <button type="submit" class="btn btn-danger btn-small">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </form>
+        </div>
+      </td>
+    </tr>
+      <% }) %>
+    </tbody>
+  </table>
 </div>
+
+
+<% if (issue.length > 0) { %>
+  <nav aria-label="Dashboard Pagination">
+    <ul class="pagination justify-content-center mt-5">
+
+      <% if (current == 1) { %>
+        <li class="page-item disabled"><a href="#" class="page-link">First</a></li>
+      <% } else { %>
+        <li class="page-item"><a href="/?page=1" class="page-link">First</a></li>
+      <% } %>
+
+      <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+      <% if(i !== 1) { %>
+        <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+      <% } %>
+
+      <% for(; i <= (Number(current) + 4) && i <= pages; i++ ) { %>
+        <% if (i == current) { %>
+          <li class="page-item disabled"><a href="#" class="page-link"><%= i %></a></li>
+        <% } else { %>
+          <li class="page-item"><a href="/?page=<%= i %>" class="page-link"><%= i %></a></li>
+        <% } %>
+        <% if (i == Number(current) + 4 && i < pages) { %>
+          <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+        <% } %>
+      <% } %>
+
+      <% if (current == pages) { %>
+        <li class="page-item disabled"><a href="#" class="page-link">Last</a></li>
+      <% } else { %>
+        <li class="page-item"><a href="/?page=<%= pages %>" class="page-link">Last</a></li>
+      <% } %>
+
+    </ul>
+  </nav>
+<% } %>
