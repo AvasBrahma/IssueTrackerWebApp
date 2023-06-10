@@ -18,7 +18,14 @@ const ProjectSchema=new Schema({
      details:{
         type: String,
         required: true
-     }
+     },
+     issue:[
+      {
+         type:mongoose.Schema.Types.ObjectId,
+         ref: 'Issue'
+
+      }
+     ]
    
 },{
     timestamps:true

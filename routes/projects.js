@@ -12,7 +12,7 @@ router.put('/edit/:id', projectController.editUpdateProject);
 
 router.delete('/edit/:id', projectController.deleteProject);
 
-router.get('/issue', issueController.viewProjectIssue);
-router.get('/creatIssuePage', issueController.viewCreateIssue);
+router.get('/issue/:id', issueController.viewProjectIssue);
+router.get('/createIssuePage/:id', issueController.viewCreateIssue);
 router.post('/addIssue', issueController.addIssue);
 module.exports=router;

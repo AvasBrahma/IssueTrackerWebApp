@@ -2,7 +2,7 @@
   <h1 class="h2">Issue</h1>
   <div class="btn-toolbar mb-2 mb-md 0">
     <div class="btn-group me-2">
-      <a href="/projects/creatIssuePage" class="btn btn-sm btn-outline-secondary">+ Create New Issue</a>
+      <a href="/projects/createIssuePage/<%= projects._id %>" class="btn btn-sm btn-outline-secondary">+ Create New Issue</a>
     </div>
   </div>
 </div>
@@ -13,7 +13,7 @@
     <div class="col">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">ACH API</a></li>
+          <li class="breadcrumb-item"><a href="/"><%= projects.projectname %></a></li>
           <li class="breadcrumb-item active"><%= issue._id %></li>
         </ol>
       </nav>
