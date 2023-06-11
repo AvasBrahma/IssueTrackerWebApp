@@ -1,25 +1,27 @@
 const express=require('express');
 const app=express();
 const methodOverride=require('method-override');
+const logger=require('morgan');
 const port=8000;
 const db=require('./config/mongoose');
 const expressLayouts=require('express-ejs-layouts');
 const flash = require('connect-flash');
 const session=require('express-session');
+const env=require('./config/environment');
 
 
 app.listen(port, function(err){
    if(err){
     console.log(`Error in running the server: ${err}`)
    }
-
    console.log(`Server Running on Port: ${port}`);
 })
 
 app.use(express.urlencoded());
 app.use(methodOverride('_method'));
-app.use(express.static('./assets'));
+app.use(express.static(env.asset_path));
 
+app.use(logger(env.morgan.mode, env.morgan.options))
 
 //express ssession
 app.use(
