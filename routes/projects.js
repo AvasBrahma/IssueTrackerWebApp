@@ -17,5 +17,6 @@ router.get('/createIssuePage/:id', issueController.viewCreateIssue);
 router.post('/addIssue', issueController.addIssue);
 
 router.get('/issue/edit/:id', issueController.viewEdit);
+router.put('/issue/update/:id', issueController.issueUpdate);
 
 module.exports=router;

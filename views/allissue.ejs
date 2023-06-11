@@ -1,0 +1,89 @@
+<div class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Issue</h1>
+    <div class="btn-toolbar mb-2 mb-md 0">
+      <div class="btn-group me-2">
+      </div>
+    </div>
+  </div>
+  
+  <div class="col py-3">
+  
+    <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item active">Issue</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  
+  </div>
+  
+  <div class="container issue-container">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-dark table-dark">
+        <tr>
+          <th scope="col">Issue Id</th>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Label</th>
+          <th scope="col">Author</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% issue.forEach(element => { %>
+          <tr>
+        <td><%= element._id %></td>
+        <td><%= element.title %></td>
+        <td><%= element.description %></td>
+        <td>
+          <div class="mb-1">
+            <select disabled id="disabledSelect" class="form-select">
+              <option><%= element.label %></option>
+            </select>
+          </div>
+        </td>
+        <td><%= element.author %></td>
+      </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  
+  
+  <% if (issue.length > 0) { %>
+    <nav aria-label="Dashboard Pagination">
+      <ul class="pagination justify-content-center mt-5">
+  
+        <% if (current == 1) { %>
+          <li class="page-item disabled"><a href="#" class="page-link">First</a></li>
+        <% } else { %>
+          <li class="page-item"><a href="/?page=1" class="page-link">First</a></li>
+        <% } %>
+  
+        <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+        <% if(i !== 1) { %>
+          <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+        <% } %>
+  
+        <% for(; i <= (Number(current) + 4) && i <= pages; i++ ) { %>
+          <% if (i == current) { %>
+            <li class="page-item disabled"><a href="#" class="page-link"><%= i %></a></li>
+          <% } else { %>
+            <li class="page-item"><a href="/?page=<%= i %>" class="page-link"><%= i %></a></li>
+          <% } %>
+          <% if (i == Number(current) + 4 && i < pages) { %>
+            <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+          <% } %>
+        <% } %>
+  
+        <% if (current == pages) { %>
+          <li class="page-item disabled"><a href="#" class="page-link">Last</a></li>
+        <% } else { %>
+          <li class="page-item"><a href="/?page=<%= pages %>" class="page-link">Last</a></li>
+        <% } %>
+  
+      </ul>
+    </nav>
+  <% } %>

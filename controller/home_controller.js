@@ -1,4 +1,5 @@
 const Project=require('../model/projectsModel');
+const Issue=require('../model/issueModel');
 const mongoose=require('mongoose');
 
 // module.exports.home= async (req,res)=> {
@@ -53,4 +54,27 @@ module.exports.home= async (req,res)=> {
     
 }
 
+
+module.exports.renderAllIssue= async (req,res)=> {
+
+    let perPage=12;
+    let page=req.query.page||1;
+    try {
+        const issue=await Issue.aggregate([{ $sort: { updatedAt: -1 }}])
+          .skip(perPage * page - perPage)
+          .limit(perPage)
+          .exec();
+
+          const count=await Issue.count();
+          return res.render('allissue', {
+             issue,
+             current: page,
+             pages: Math.ceil(count/perPage)
+        });
+       
+    } catch (error) {
+        console.log('Error:', error);
+    }
+
+}
  

@@ -108,3 +108,26 @@ module.exports.viewEdit= async(req, res)=>{
      }
   
   }
+
+  module.exports.issueUpdate= async(req, res)=>{
+
+     try {
+       
+        await Issue.findByIdAndUpdate(req.params.id, {
+           title: req.body.title,
+           description: req.body.description,
+           author: req.body.author,
+           label: req.body.label,
+           updatedAt: Date.now()
+        });
+        const projectId=req.body.projectid;
+
+        console.log("Project ID :", projectId);
+  
+       await res.redirect('/projects/issue/' + projectId);
+        
+     } catch (error) {
+         console.log('error', error);
+     }
+  }
+  
