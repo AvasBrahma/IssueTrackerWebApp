@@ -18,5 +18,5 @@ router.post('/addIssue', issueController.addIssue);
 
 router.get('/issue/edit/:id', issueController.viewEdit);
 router.put('/issue/update/:id', issueController.issueUpdate);
-
+router.delete('/issue/edit/:id', issueController.deleteIssue);
 module.exports=router;

@@ -60,7 +60,7 @@
           <a href="/projects/issue/edit/<%= element._id %>" type="button" class="btn btn-warning btn-small">
             <i class="fa-solid fa-pen-to-square"></i>
           </a>
-          <form action="/projects/edit/?_method=DELETE" method="POST" class="position-relative">
+          <form action="/projects/issue/edit/<%=element._id %>?_method=DELETE" method="POST" class="position-relative">
             <button type="submit" class="btn btn-danger btn-small">
               <i class="fa-solid fa-trash"></i>
             </button>

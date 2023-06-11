@@ -147,3 +147,19 @@ module.exports.viewEdit= async(req, res)=>{
      }
   }
   
+
+module.exports.deleteIssue= async(req, res)=>{
+
+   try {
+      const issue= await Issue.findOne({_id: req.params.id});
+      const projectid=issue.project;
+     await Issue.deleteOne({
+         _id: req.params.id
+      })
+      res.redirect('/projects/issue/'+projectid);
+      
+   } catch (error) {
+      console.log('error', error);
+   }
+
+}
