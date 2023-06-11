@@ -2,8 +2,14 @@ const Project=require('../model/projectsModel');
 const mongoose=require('mongoose');
 
 module.exports.createProject= async (req, res)=>{
+
+   const locals={
+      title: "Create Project"
+  }
    
-    res.render('projects/createProject');
+    res.render('projects/createProject', {
+      locals
+    });
 }
 
 //post projects in DB
@@ -37,9 +43,14 @@ module.exports.viewProject=async (req, res)=> {
 
    try {
       const projects= await Project.findOne({_id: req.params.id});
+      const locals={
+         title: projects.projectname
+     }
+
 
       res.render('projects/view', {
-         projects
+         projects,
+         locals
       });
       
    } catch (error) {
@@ -55,8 +66,14 @@ module.exports.editProject= async(req, res)=>{
    try {
       const projects= await Project.findOne({_id: req.params.id});
 
+      const locals={
+         title:"Edit Project"
+     }
+
+
       res.render('projects/edit', {
-         projects
+         projects,
+         locals
       });
       
    } catch (error) {
@@ -77,6 +94,7 @@ module.exports.editUpdateProject= async(req, res)=>{
          details: req.body.details,
          updatedAt: Date.now()
       });
+
 
       await res.redirect('/');
       

@@ -24,12 +24,16 @@ module.exports.viewProjectIssue=async(req, res)=>{
            .limit(perPage)
            .exec();
 
+           const locals={
+            title: "Issue"
+        }
            const count=await Issue.count();
            return res.render('projects/issue/viewIssue', {
               message, 
               projects,
               issue,
               current: page,
+              locals,
               pages: Math.ceil(count/perPage)
                
          
@@ -47,9 +51,16 @@ module.exports.viewProjectIssue=async(req, res)=>{
     try {
        const projects= await Project.findOne({_id: req.params.id});
  
+
+       const locals={
+         title: "Create Issue"
+     }
+
        res.render('projects/issue/createIssue',{
-          projects
+          projects,
+          locals
        });
+      
        
     } catch (error) {
          console.log('Error', error);
@@ -99,8 +110,13 @@ module.exports.viewEdit= async(req, res)=>{
      try {
         const issue= await Issue.findOne({_id: req.params.id});
   
+        const locals={
+         title: "Edit Issue"
+     }
+
         res.render('projects/issue/edit', {
-           issue
+           issue,
+           locals
         });
         
      } catch (error) {

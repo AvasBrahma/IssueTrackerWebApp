@@ -34,12 +34,18 @@ module.exports.home= async (req,res)=> {
             .skip(perPage * page - perPage)
             .limit(perPage)
             .exec();
+          
+            const locals={
+                title:"Home"
+            }
+
 
             const count=await Project.count();
             return res.render('home', {
                message, 
                projects,
                current: page,
+               locals,
                pages: Math.ceil(count/perPage)
                 
           
@@ -65,10 +71,16 @@ module.exports.renderAllIssue= async (req,res)=> {
           .limit(perPage)
           .exec();
 
+           
+          const locals={
+            title:"Issue"
+        }
+
           const count=await Issue.count();
           return res.render('allissue', {
              issue,
              current: page,
+             locals,
              pages: Math.ceil(count/perPage)
         });
        
