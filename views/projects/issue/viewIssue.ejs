@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h2">Issue</h1>
+  <h1 class="h2"><%= projects.projectname %></h1>
   <div class="btn-toolbar mb-2 mb-md 0">
     <div class="btn-group me-2">
       <a href="/projects/createIssuePage/<%= projects._id %>" class="btn btn-sm btn-outline-secondary">+ Create New Issue</a>
@@ -13,8 +13,9 @@
     <div class="col">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
           <li class="breadcrumb-item"><a href="/"><%= projects.projectname %></a></li>
-          <li class="breadcrumb-item active"><%= issue._id %></li>
+          <li class="breadcrumb-item active">Issue</li>
         </ol>
       </nav>
     </div>
@@ -28,7 +29,7 @@
 <% } %> 
 
 <div class="container issue-container">
-  <h1>Issue Table</h1>
+  <h1>Issue</h1>
   <table class="table table-bordered table-hover">
     <thead class="thead-dark table-dark">
       <tr>
@@ -56,10 +57,7 @@
       <td><%= element.author %></td>
       <td class="text-end">
         <div class="d-flex flex-row justify-content-end gap-2">
-          <a href="/projects/view/ type=" button" class="btn btn-primary btn-small">
-            <i class="fa-solid fa-eye"></i>
-          </a>
-          <a href="/projects/edit/" type="button" class="btn btn-warning btn-small">
+          <a href="/projects/issue/edit/<%= element._id %>" type="button" class="btn btn-warning btn-small">
             <i class="fa-solid fa-pen-to-square"></i>
           </a>
           <form action="/projects/edit/?_method=DELETE" method="POST" class="position-relative">

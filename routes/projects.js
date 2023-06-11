@@ -15,4 +15,7 @@ router.delete('/edit/:id', projectController.deleteProject);
 router.get('/issue/:id', issueController.viewProjectIssue);
 router.get('/createIssuePage/:id', issueController.viewCreateIssue);
 router.post('/addIssue', issueController.addIssue);
+
+router.get('/issue/edit/:id', issueController.viewEdit);
+
 module.exports=router;

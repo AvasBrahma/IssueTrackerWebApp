@@ -25,7 +25,7 @@ module.exports.viewProjectIssue=async(req, res)=>{
            .exec();
 
            const count=await Issue.count();
-           return res.render('projects/viewIssue', {
+           return res.render('projects/issue/viewIssue', {
               message, 
               projects,
               issue,
@@ -47,7 +47,7 @@ module.exports.viewProjectIssue=async(req, res)=>{
     try {
        const projects= await Project.findOne({_id: req.params.id});
  
-       res.render('projects/createIssue',{
+       res.render('projects/issue/createIssue',{
           projects
        });
        
@@ -93,3 +93,18 @@ module.exports.addIssue=async(req, res)=>{
 
     
 }
+
+module.exports.viewEdit= async(req, res)=>{
+
+     try {
+        const issue= await Issue.findOne({_id: req.params.id});
+  
+        res.render('projects/issue/edit', {
+           issue
+        });
+        
+     } catch (error) {
+          console.log('Error', error);
+     }
+  
+  }
